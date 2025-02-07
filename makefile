@@ -6,7 +6,7 @@
 #    By: blohrer <blohrer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 12:39:55 by blohrer           #+#    #+#              #
-#    Updated: 2025/02/04 16:36:57 by blohrer          ###   ########.fr        #
+#    Updated: 2025/02/07 13:33:13 by blohrer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = pipex
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = childs.c utils.c pipex.c path.c
+SRC = utils.c pipex.c execute_pipe.c
 
 OFILES = $(SRC:.c=.o)
 

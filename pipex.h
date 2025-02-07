@@ -6,7 +6,7 @@
 /*   By: blohrer <blohrer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:50:53 by blohrer           #+#    #+#             */
-/*   Updated: 2025/02/07 09:03:12 by blohrer          ###   ########.fr       */
+/*   Updated: 2025/02/07 13:32:17 by blohrer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,14 @@
 # include <sys/uio.h>
 # include <unistd.h>
 
-void	free_args(char **args);
-void	first_child(int fd_in, int *pipefd, char *cmd1, char **cmd1_args,
-			char **envp);
-void	second_child(int *pipefd, int fd_out, char *cmd2, char **cmd2_args,
-			char **envp);
-void	execute_pipe(char *cmd1, char *cmd2, int fd_in, int fd_out,
-			char **cmd1_args, char **cmd2_args, char **envp);
-char	*get_command_path(char *cmd, char **envp);
 char	**parse_command(char *cmd);
-int		open_input_file(char *filename);
-int		open_output_file(char *filename);
+char	*find_command_path(char *cmd);
+void	open_files(const char *infile, const char *outfile, int *fd_in,
+		int *fd_out);
+void	ft_free_array(char **arr);
+void	create_pipe(int pipe_fds[2]);
+void	execute_child(char **cmd_args, int fd_in, int fd_out, int close_fd);
+void	execute_pipe(char **cmd1_args, char **cmd2_args, int fd_in, int fd_out);
+
 
 #endif
