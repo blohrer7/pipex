@@ -6,7 +6,7 @@
 /*   By: blohrer <blohrer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 10:08:11 by blohrer           #+#    #+#             */
-/*   Updated: 2025/02/07 13:54:39 by blohrer          ###   ########.fr       */
+/*   Updated: 2025/02/07 14:35:28 by blohrer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_free_array(char **arr)
 	int	i;
 
 	if (!arr)
-		return;
+		return ;
 	i = 0;
 	while (arr[i])
 	{
@@ -47,36 +47,23 @@ char	*find_command_path(char *cmd)
 {
 	char	**paths;
 	char	*cmd_path;
-	char	*tmp;
 	int		i;
 
 	if (access(cmd, X_OK) == 0)
 		return (ft_strdup(cmd));
-	paths = ft_split(getenv("PATH"), ':');
-	if (!paths)
+	if (!(paths = ft_split(getenv("PATH"), ':')))
 		return (NULL);
-	i = 0;
-	while (paths[i])
+	i = -1;
+	while (paths[++i])
 	{
-		tmp = ft_strjoin(paths[i], "/"); // Ersten String erstellen
-		if (!tmp)
-			break ;
-		cmd_path = ft_strjoin(tmp, cmd); // Zweiten String erstellen
-		free(tmp); // **Fix: tmp sofort freigeben, da es nicht mehr gebraucht wird!**
-		if (!cmd_path)
-			break ;
+		cmd_path = ft_strjoin(paths[i], "/");
+		cmd_path = ft_strjoin(cmd_path, cmd);
 		if (access(cmd_path, X_OK) == 0)
-		{
-			ft_free_array(paths);
-			return (cmd_path);
-		}
-		free(cmd_path); // **Fix: Falls der Pfad falsch war, freigeben!**
-		i++;
+			return (ft_free_array(paths), cmd_path);
+		free(cmd_path);
 	}
-	ft_free_array(paths);
-	return (NULL);
+	return (ft_free_array(paths), NULL);
 }
-
 
 char	**parse_command(char *cmd)
 {
