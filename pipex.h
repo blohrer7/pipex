@@ -6,7 +6,7 @@
 /*   By: blohrer <blohrer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:50:53 by blohrer           #+#    #+#             */
-/*   Updated: 2025/02/07 13:32:17 by blohrer          ###   ########.fr       */
+/*   Updated: 2025/02/08 09:35:09 by blohrer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@
 # include <sys/uio.h>
 # include <unistd.h>
 
-char	**parse_command(char *cmd);
-char	*find_command_path(char *cmd);
+char	**parse_command(char *cmd, char **envp);
 void	open_files(const char *infile, const char *outfile, int *fd_in,
-		int *fd_out);
+			int *fd_out);
 void	ft_free_array(char **arr);
 void	create_pipe(int pipe_fds[2]);
 void	execute_child(char **cmd_args, int fd_in, int fd_out, int close_fd);
 void	execute_pipe(char **cmd1_args, char **cmd2_args, int fd_in, int fd_out);
-
+char	**get_path_from_envp(char **envp);
+char	*find_command_path(char *cmd, char **envp);
 
 #endif

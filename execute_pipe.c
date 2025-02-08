@@ -6,7 +6,7 @@
 /*   By: blohrer <blohrer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:43:47 by blohrer           #+#    #+#             */
-/*   Updated: 2025/02/07 13:36:34 by blohrer          ###   ########.fr       */
+/*   Updated: 2025/02/08 09:38:47 by blohrer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	create_pipe(int pipe_fds[2])
 		exit(EXIT_FAILURE);
 	}
 }
+
 void	execute_child(char **cmd_args, int fd_in, int fd_out, int close_fd)
 {
 	if (dup2(fd_in, STDIN_FILENO) == -1 || dup2(fd_out, STDOUT_FILENO) == -1)
@@ -32,11 +33,13 @@ void	execute_child(char **cmd_args, int fd_in, int fd_out, int close_fd)
 	perror("Error executing command");
 	exit(EXIT_FAILURE);
 }
+
 void	execute_pipe(char **cmd1_args, char **cmd2_args, int fd_in, int fd_out)
 {
-	int	pipe_fds[2];
+	int		pipe_fds[2];
+	pid_t	pid1;
+	pid_t	pid2;
 
-	pid_t pid1, pid2;
 	create_pipe(pipe_fds);
 	pid1 = fork();
 	if (pid1 == -1)
