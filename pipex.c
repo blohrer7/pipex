@@ -6,7 +6,7 @@
 /*   By: blohrer <blohrer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:00:49 by blohrer           #+#    #+#             */
-/*   Updated: 2025/02/07 15:29:37 by blohrer          ###   ########.fr       */
+/*   Updated: 2025/02/10 09:58:56 by blohrer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc != 5)
 	{
-		ft_putstr_fd("Usage: ./pipex file1 cmd1 cmd2 file2\n", 2);
+		ft_putstr_fd("Error: ./pipex file1 cmd1 cmd2 file2\n", 2);
 		return (1);
 	}
 	open_files(argv[1], argv[4], &fd_in, &fd_out);
