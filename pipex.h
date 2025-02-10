@@ -6,7 +6,7 @@
 /*   By: blohrer <blohrer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 12:50:53 by blohrer           #+#    #+#             */
-/*   Updated: 2025/02/08 09:35:09 by blohrer          ###   ########.fr       */
+/*   Updated: 2025/02/10 11:40:47 by blohrer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
+#include <sys/wait.h>
 
 char	**parse_command(char *cmd, char **envp);
 void	open_files(const char *infile, const char *outfile, int *fd_in,
